@@ -1,0 +1,22 @@
+\name{NumIt}
+\alias{NumIt}
+\title{
+{Number of Iterations Until Convergence}
+\description{
+Once number of imputations is determined, this function determines whether the number of iterations you specified to generate your
+original mids options is enough for the Markov chains in the mcmc procedure used in mice to converge. If it is not sufficient, this procedure
+will continue until the number necessary is found, which will be reported as output.
+\usage{
+NumIm(data,m,it,range)
+}
+\arguments{
+\item{data} {a data frame of cross-sectional data containing missing values}
+\item{m} {number of imputations as determined by NumIm}
+\item{it} {number of iterations chosen by user}
+\item{range} {the distance from rhat value 1 that the user is willing to tolerate}
+
+\examples{
+#################################################################################################
+#EXAMPLE 1: Suggested Iteration number for Tobacco Alcohol and Cancer Data#
+#################################################################################################
+NumIt(practice,21,20,.01)
