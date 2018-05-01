@@ -1,0 +1,37 @@
+\name{NumIm}
+\alias{NumIm}
+\title{
+{Number of Imputations- von Hippel 2018 Algorithm}
+\description{
+estimates the number of imputations necessary in a mulitple imputation procedures, given coefficient of variation, which may be chosen by 
+the user, and mean fmi value, which is accessible through finding a summary of the pooled results of a MI procedure run through the MICE. 
+That is, after imputing the data with mice, using the "with" function to run a model, then the "pool" function to pool its results by
+Rubin's rule, and find its summary.
+}
+\usage{
+NumIm(fmi,csve)
+}
+\references{
+von Hippel, Paul T. (2018). “How many imputations do you need? A two-stage calculation using a quadratic rule.” Sociological Methods and
+Research, published online, behind a paywall. A free pre-publication version is available as an arXiv e-print.
+}
+\examples{
+#################################################################################################
+#EXAMPLE 1: Suggested imputation number for Tobacco Alcohol and Cancer Data#
+#################################################################################################
+#Run mice procedure#
+ini<- mice(practice, maxit=20)
+meth<- ini$meth
+pred<- ini$pred
+imp1<- mice(practice, meth=meth, pred=pred, print=FALSE, diagnostics=TRUE)
+#Run model
+modelmi<- with(data=ini, exp=lm(contraction~agep*alcgp*tobgp))
+#Pool Results
+pool<-pool(modelmi, method="smallsample")
+#Obtain Pooled Results, including fmi using Summary Function#
+summary(pool)
+#find mean to use in function#
+fmi<-mean(pool$fmi)
+#Suggested Number of Imputations#
+NumIm(fmi,0.05)
+
