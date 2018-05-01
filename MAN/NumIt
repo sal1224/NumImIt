@@ -3,9 +3,9 @@
 \title{
 {Number of Iterations For Convergence}
 \description{
-Once number of imputations is determined, this function determines whether the number of iterations you specified to generate your
-original mids options is enough for the Markov chains in the mcmc procedure used in mice to converge. If it is not sufficient, this procedure
-will continue until the number necessary is found, which will be reported as output.
+Once number of imputations is determined, this function determines whether the number of iterations specified to generate
+original mids options is sufficient for the Markov chains in the mcmc procedure used in mice to converge. If it is not sufficient, this
+procedure will continue until the number necessary is found, which will be reported as output.
 \usage{
 NumIm(data,m,it,range)
 }
