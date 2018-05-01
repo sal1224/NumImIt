@@ -1,0 +1,20 @@
+#Number of Iterations for Convergence#
+
+#Output specifies the number of iterations in a mcmc are necessary unti the Markov chains converge by the criteria of the Rhat statistic.#
+
+NumIt<- function(data,m,it,range) {
+#Runs initial imputations#	
+  ini<- mice(data, m=m, maxit=it)
+#Tests for Convergence#
+Rhatini<- Rhat.mice(ini)
+#Loop until convergence is acheived#
+mean<- ifelse(between(Rhatini$Rhat.M.imp,(1-range),(1+range)),TRUE,FALSE)
+variance<- ifelse(between(Rhatini$Rhat.M.imp,(1-range),(1+range)),TRUE,FALSE)
+repeat{
+	imp2<- mice(data, m=m,maxit=it)
+	Rhat2<- Rhat.mice(imp2)
+mean2<- ifelse(between(Rhat2$Rhat.M.imp,(1-range),(1+range)),TRUE,FALSE)
+variance2<- ifelse(between(Rhat2$Rhat.Var.imp,(1-range),(1+range)),TRUE,FALSE) 
+if (all(mean2)==TRUE & all(variance2)==TRUE) {return(it);
+break
+} else it=it+1}}
