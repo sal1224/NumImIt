@@ -1,0 +1,18 @@
+Package: NumImIt
+Type: Package
+Version: beta
+Title: Number of Imputations and Iterations
+Date: 2018-04-30
+Author: person("Jennifer", "Salach", role=c("aut","cre"),
+  email= "salach@mail.usf.edu")
+Maintainer: Jennifer Salach <salach@mail.usf.edu>
+Depends:
+  R (>=3.0)
+Imports:
+grDevices,graphics,nnet,rpart,splines,stats,survival,lme4,MASS,methods,mitools,mvtnorm,Rcpp,sirt,stats,TAM (>=2.9-13),utils
+LinkingTo: 
+Rcpp, RcppArmadillo
+Suggests:
+mitml, pan
+URL:
+https://github.com/sal1224/NumImIt
